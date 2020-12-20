@@ -1,0 +1,369 @@
+package TipeDataVariable;
+
+import java.util.Scanner;
+
+public class Tugas10 {
+
+    // NIM : 202021420022
+    // NAMA : HABIBUL UMAM
+    // KELAS : K
+
+    // deklarasi variable
+    private static Scanner input;
+
+
+    public static void main(String[] args) {
+        // 1). pilih bentuk yg akan di print
+        String opsiLanjut;
+        do {
+            selectShape();
+            System.out.println("========================");
+            System.out.print("apakah anda ingin pesan lagi ? (y/n) : ");
+            input = new Scanner(System.in);
+            opsiLanjut = input.nextLine();
+        } while (opsiLanjut.equalsIgnoreCase("y"));
+
+    }
+
+    private static void selectShape() {
+        // menu
+        System.out.println("========================");
+        System.out.println("DAFTAR PILIHAN BENTUK");
+        System.out.println("========================");
+        System.out.print("1). Bintang Rata Kiri");
+        System.out.println("   7). Segitiga Sama Sisi");
+        System.out.print("2). Bintang Rata Kanan");
+        System.out.println("   8). Segitiga Kebalik");
+        System.out.print("3). Belah Ketupat");
+        System.out.println("   9). Bintang Angka 8");
+        System.out.print("4). Kotak (RATA KIRI & KANAN)");
+        System.out.println("   10). Segitiga Plus");
+        System.out.print("5). Kotak (Tengahnya kosong)");
+        System.out.println("   11). Trapesium");
+        System.out.print("6). Segitiga sama sisi (Bolong Tengah)");
+        System.out.println("   12). Triangular");
+        System.out.println("========================\n");
+
+        System.out.print("Masukkan Pilihan anda 1-12 : ");
+        input = new Scanner(System.in);
+        int opsiBentuk = input.nextInt();
+
+        switch (opsiBentuk) {
+            case 1: // Bintang Rata Kiri
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                int jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j=0;j<=i;j++) { // horizontal
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 2: // Bintang Rata Kanan
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j = jumlah -1; j>i; j--) { // horizontal space
+                        // (jumlah - 1) ?? because, max value of variable "i" is jumlah-1, cz we start from zero.
+                        System.out.print(" ");
+                    }
+                    for (int j=0;j<=i;j++) { // horizontal star
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 3: // Belah Ketupat
+                do {
+                    System.out.println("Mohon masukkan jumlah bilangan ganjil dan lebih dari 5 biar bentuknya simetris dan bagus");
+                    System.out.print("Masukkan jumlah baris : ");
+                    input = new Scanner(System.in);
+                    jumlah = input.nextInt();
+                } while (jumlah % 2 == 0 || jumlah < 5);
+
+                // deklarasi variable
+                int jumlahTop = ((jumlah -1)/2)+1;
+                int jumlahBottom= (jumlah -1)/2;
+
+
+                // top of triangle
+                for (int i=0;i<jumlahTop;i++) { // vertikal
+                    for (int j=jumlahTop-1;j>i;j--) { // horizontal space
+                        System.out.print(" ");
+                    }
+                    for (int j=0;j<=i;j++) { // horizontal star
+                        System.out.print("*");
+                    }
+                    for (int j=0;j<=i - 1;j++) { // horizontal star other side
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+
+                // bottom of triangle
+                for (int i=0;i<jumlahBottom;i++) {
+                    for (int j=0;j<=i;j++) { // horizontal space
+                        System.out.print(" ");
+                    }
+                    for (int j=jumlahBottom;j>i;j--) { // horizontal star
+                        System.out.print("*");
+                    }
+                    for (int j=jumlahBottom-1;j>i;j--) { // horizontal star other side
+                        // (jumlah-2) cz, i want to bind with other triangle at the top.
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 4: // Kotak (RATA KIRI & KANAN)
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j = 0; j< jumlah; j++) { // horizontal
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 5: // Kotak (Tengahnya kosong)
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j = 0; j< jumlah; j++) { // horizontal
+                        if (i != 0 && i != jumlah -1) {
+                            if (j == 0 || j == jumlah - 1) {
+                                System.out.print("*");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            System.out.print("*");
+                        }
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 6: // Segitiga sama sisi (Bolong Tengah)
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j = jumlah -1; j>i; j--) { // horizontal space
+                        System.out.print(" ");
+                    }
+                    for (int j=0;j<=i;j++) { // horizontal star
+                        if (i != jumlah - 1) {
+                            if (j == 0) {
+                                System.out.print("*");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            System.out.print("*");
+                        }
+                    }
+                    for (int j=0;j<=i - 1;j++) { // horizontal star other side
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        if (i != jumlah - 1) {
+                            if (j == i - 1) {
+                                System.out.print("*");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            System.out.print("*");
+                        }
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 7: // Segitiga Sama Sisi
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j = jumlah -1; j>i; j--) { // horizontal space
+                        // (jumlah - 1) ?? because, max value of variable "i" is jumlah-1, cz we start from zero.
+                        System.out.print(" ");
+                    }
+                    for (int j=0;j<=i;j++) { // horizontal star
+                        System.out.print("*");
+                    }
+                    for (int j=0;j<=i - 1;j++) { // horizontal star other side
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 8: // Segitiga Kebalik
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j=0;j<i;j++) { // horizontal space
+                        System.out.print(" ");
+                    }
+                    for (int j = jumlah -1; j>i; j--) { // horizontal star
+                        // (jumlah - 1) ?? because, max value of variable "i" is jumlah-1, cz we start from zero.
+                        System.out.print("*");
+                    }
+                    for (int j = jumlah -1; j>i - 1; j--) { // horizontal star other side
+                        // (jumlah - 1) ?? because, max value of variable "i" is jumlah-1, cz we start from zero.
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 9: // Bintang Angka 8
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+
+                // used to vertical loop
+                jumlahTop = jumlah % 2 != 0 ? (jumlah /2)+1 : jumlah /2;
+                jumlahBottom = jumlah / 2;
+
+                for (int i=0;i<jumlahTop;i++) { // vertikal
+                    for (int j = 0; j< jumlah; j++) { // horizontal still use jumlah
+                        if (i != 0 && i != jumlahTop-1) {
+                            if (j == 0 || j == jumlah - 1) { // horizontal still use jumlah
+                                System.out.print("*");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            System.out.print("*");
+                        }
+                    }
+                    System.out.println(); // request to the new line
+                }
+                for (int i=0;i<jumlahBottom;i++) { // vertikal
+                    for (int j = 0; j< jumlah; j++) { // horizontal still use jumlah
+                        if (i != jumlahBottom-1) {
+                            if (j == 0 || j == jumlah - 1) { // horizontal still use jumlah
+                                System.out.print("*");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            System.out.print("*");
+                        }
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 10: // Segitiga Plus
+                do {
+                    System.out.println("Mohon masukkan jumlah bilangan ganjil dan lebih dari 5 biar bentuknya simetris dan bagus");
+                    System.out.print("Masukkan jumlah baris : ");
+                    input = new Scanner(System.in);
+                    jumlah = input.nextInt();
+                } while (jumlah % 2 == 0 || jumlah < 5);
+
+                // deklarasi variable
+                jumlahTop = ((jumlah -1)/2)+1;
+                jumlahBottom = (jumlah -1)/2;
+
+
+                // top of triangle
+                for (int i=0;i<jumlahTop;i++) { // vertikal
+                    for (int j=jumlahTop-1;j>i;j--) { // horizontal space
+                        System.out.print(" ");
+                    }
+                    for (int j=0;j<=i;j++) { // horizontal star
+                        if (i != jumlahTop - 1) {
+                            if (j == i) {
+                                System.out.print("*");
+                            } else {
+                                System.out.print(" ");
+                            }
+                        } else {
+                            System.out.print("*");
+                        }
+                    }
+                    for (int j=0;j<=i - 1;j++) { // horizontal star other side
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        if (i == jumlahTop - 1) {
+                            System.out.print("*");
+                        }
+                    }
+                    System.out.println(); // request to the new line
+                }
+
+                // bottom of triangle
+                for (int i=0;i<jumlahBottom;i++) {
+                    for (int j=0;j<=i;j++) { // horizontal space
+                        System.out.print(" ");
+                    }
+                    for (int j=jumlahBottom;j>i;j--) { // horizontal star
+                        if (j == i + 1) {
+                            System.out.print("*");
+                        } else {
+                            System.out.print(" ");
+                        }
+                    }
+                    for (int j=jumlahBottom-1;j>i;j--) { // horizontal star other side
+                        // (jumlah-1) cz, i want to bind with other triangle at the top.
+                        System.out.print(" ");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 11: // Trapesium
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+                for (int i = 0; i< jumlah; i++) { // vertikal
+                    for (int j = jumlah -1; j>i; j--) { // horizontal space
+                        // (jumlah - 1) ?? because, max value of variable "i" is jumlah-1, cz we start from zero.
+                        System.out.print(" ");
+                    }
+                    for (int j = 0; j<= jumlah +i; j++) { // horizontal star
+                        // jumlah + 1 , cz, i want to print a trapesium shape.
+                        System.out.print("*");
+                    }
+                    for (int j=0;j<=i;j++) { // horizontal star other side
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        System.out.print("*");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            case 12: // Triangular 1,2,3
+                System.out.print("Masukkan jumlah baris : ");
+                input = new Scanner(System.in);
+                jumlah = input.nextInt();
+
+                int nextInt = 0;
+                for (int i = 1; i<= jumlah; i++) { // vertikal
+                    for (int j = jumlah; j>=i; j--) { // horizontal space
+                        // (jumlah - 1) ?? because, max value of variable "i" is jumlah-1, cz we start from zero.
+                        System.out.print(" ");
+                    }
+                    for (int j=1;j<=i;j++) { // horizontal star
+                        System.out.print(" "+j+" ");
+
+                        // note : it will be initialize with last value
+                        nextInt = j;
+                    }
+                    for (int j=1;j<=i - 1;j++) { // horizontal star other side
+                        // (-1) cz, the top op the triangle will be written by seconds loop.
+                        int val = nextInt+j;
+                        System.out.print(" "+val+" ");
+                    }
+                    System.out.println(); // request to the new line
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+}
