@@ -39,7 +39,6 @@ class _CustomCameraComponentState extends State<CustomCameraComponent>
       _cameraController = CameraController(_cameras[0], ResolutionPreset.medium);
     }
     await _cameraController.initialize();
-    await _cameraController.setFlashMode(FlashMode.off);
   }
 
   @override
@@ -154,7 +153,7 @@ class _CustomCameraComponentState extends State<CustomCameraComponent>
                                   width: 0,
                                   height: 0,
                                 ),
-                                // widget.videoMode ? Container() : _flashModeRowWidget(setMyState),
+                                widget.videoMode ? Container() : _flashModeRowWidget(setMyState),
                               ],
                             ),
                           ),
